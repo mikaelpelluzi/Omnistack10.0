@@ -1,5 +1,5 @@
 const axios = require ('axios');
-const Dev = require ('../models/dev');
+const Dev = require ('../models/Dev');
 
 module.exports = {
     async store(request, response) {
