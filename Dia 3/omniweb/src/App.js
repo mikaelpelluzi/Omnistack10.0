@@ -10,23 +10,29 @@ import DevItem from './components/DevItem';
 import DevForm from './components/DevForm';
 
 function App() {
-const [devs, setDevs] = useState([]);
+  const [devs, setDevs] = useState([]);
 
+    useEffect(() => {
+      async function loadDevs() {
+        const response = await api.get('/devs');
+        
+        setDevs(response.data);
+      }
+      console.log('loadDevs');
+      loadDevs();
+    }, []);
 
-  useEffect(() => {
-    async function loadDevs() {
-      const response = await api.get('/devs');
+    async function handleAddDev(data) {
+      const response = await api.post('/devs', data)
       
-      setDevs(response.data);
+      setDevs([...devs, response.data]);
     }
 
-    loadDevs();
-  }, []);
-  async function handleAddDev(data) {
-  const response = await api.post('/devs', data)
-  
-  setDevs([...devs, response.data]);
-}
+    async function handleDeleteDev(id) {
+      api.delete('/devs/' + id);
+      const newList = devs.filter(dev => dev._id !== id);
+      setDevs(newList);
+    }
 
   return (
     <div id="app">
@@ -38,7 +44,11 @@ const [devs, setDevs] = useState([]);
       <main>
         <ul>
           {devs.map(dev => (
-            <DevItem key={dev._id} dev={dev} />
+            <DevItem 
+            key={dev._id} 
+            dev={dev} 
+            handleDeleteDev={handleDeleteDev}
+            />
           ))}
         </ul>
       </main>
