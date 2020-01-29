@@ -25,11 +25,4 @@ module.exports = {
         return response.json({ devs });
     },
     // exercicio extra da aula.
-    async update(){
-
-    },
-
-    async destroy(){
-
-    },
 };
