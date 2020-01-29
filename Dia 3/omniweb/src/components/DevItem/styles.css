@@ -48,3 +48,18 @@ li.dev-item a {
 li.dev-item a:hover {
     color: #5a2ea6;
 }
+
+/* CSS do butão de deletar, caso queira utiliza-lo só retirar o comentário
+li.dev-item button {
+    width: 50%;
+    border: 0;
+    margin: 30px 25% 0;
+    background-color: #7d40e7;
+    border-radius: 2px;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+}
+*/
